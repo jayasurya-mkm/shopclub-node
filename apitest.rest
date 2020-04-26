@@ -1,20 +1,22 @@
- GET http://localhost:9000
+GET http://localhost:9000/user
 
 ######
 POST http://localhost:9000/signup
 Content-Type: application/json
 
 {
-    "name": "rajkumar",
-    "email": "rajkumar@mail.com",
-    "password": "gokul1234"
+    "username": "malini",
+    "email": "malini@mail.com",
+    "phone_number": "858632483",
+    "password": "welcome123",
+    "confirm_password": "Welcome123"
 }
 
 ####
-POST http://localhost:9000/login
+POST http://localhost:9000/signin
 Content-Type: application/json
 
 {
-    "emal": "ranjani@mail.com",
-    "password": "suraya123"
+    "email": "malini@mail.com",
+    "password": "welcome123"
 }

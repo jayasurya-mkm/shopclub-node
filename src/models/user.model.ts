@@ -3,15 +3,17 @@ import { User } from "../common/interfaces/user.interfaces";
 
 export class UsersModelSchema {
 
-    schema: mongoose.Schema<any>
+    static schemaTypes = mongoose.Schema.Types;
     constructor() {}
 
     public static user() {
         const userSchema = new mongoose.Schema({
-            name: { type: String, required: true},
+            username: { type: String, required: true},
             email: { type: String, lowercase: true, unique: true, index: true},
+            phone_number: { type: Number},
             password: { type: String, required: true},
-            role: { type: String, default: 'user'},
+            confirm_password: { type: String, required: true},
+            role: { type: String, default: 'pro-user'},
         }, {timestamps: true, versionKey: false });
         return userSchema;
     }

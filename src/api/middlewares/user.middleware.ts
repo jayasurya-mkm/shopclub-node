@@ -8,16 +8,16 @@ export default class UserMiddleware {
 
     static userLogin = async (req: Request, res: Response, next: Function) => {
         try {
-            const userModel = Conatiner.get('userModel') as mongoose.Model<User & mongoose.Document>
+            const userModel = Conatiner.get('userModel') as mongoose.Model<User & mongoose.Document>;
             const user = await userModel.find({email: req.body.email});
-            if (!!user && user.length >= 1 && user[0].email === req.body.email) {
-                res.status(200).json(user);
+            if (!!user && user.length >= 1 && user[0].email === req.body.email && user[0].password === req.body.password) {
+                res.status(200).json({id: user[0]._id, username: user[0].username, role: user[0].role});
             } else {
-                res.status(200).json({message: 'Invalid mail id'});
+                res.status(200).json({message: 'Invalid Mail/Password'});
             }
         } catch (error) {
             res.status(500).json({message: 'please check param/payload key as correct or not'});
-        }        
+        }
         next();
     }
 
